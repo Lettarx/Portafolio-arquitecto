@@ -1,12 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Estudio Martin Valdés</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Poppins:wght@300;400;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+			crossorigin="anonymous"
+		></script>
 	</head>
 	<body>
 		<slot />
@@ -19,5 +36,32 @@
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+		background: var(--bg);
+		color: var(--text);
+		line-height: 1.6;
 	}
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+	:root {
+		--bg: #ffffff;
+		--text: #1a1a1a;
+		--muted: #6b6b6b;
+		--accent: #f4d35e;
+		--dark: #0f0f0f;
+		--card: #f4f4f4;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-family: Poppins, Inter, system-ui, Arial, sans-serif;
+		margin: 0 0 12px 0;
+		color: var(--text);
+	}
+	
 </style>

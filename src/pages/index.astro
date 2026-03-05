@@ -3,6 +3,7 @@ export const prerender = false
 import CardProject from '../components/Card_Project.astro';
 import Form from '../components/Form.astro';
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
 import { type SanityDocument } from '@sanity/client';
 import { sanityClient } from 'sanity:client';
 
@@ -34,7 +35,9 @@ const posts = await sanityClient.fetch<SanityDocument[]>(POST_QUERY);
 ---
 
 <Layout>
+
 	<!-- <Welcome /> -->
+	<Header />
 	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 		{posts.map((post) => (
 			<CardProject
