@@ -5,6 +5,7 @@ import Form from '../components/Form.astro';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import SeccionProtafolio from '../components/Seccion_protafolio.astro';
+import SeccionSobreMi from '../components/Seccion_sobre_mi.astro';
 import { type SanityDocument } from '@sanity/client';
 import { sanityClient } from 'sanity:client';
 
@@ -40,18 +41,7 @@ const posts = await sanityClient.fetch<SanityDocument[]>(POST_QUERY);
 	<!-- <Welcome /> -->
 	<Header />
   <SeccionProtafolio />
-	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-		{posts.map((post) => (
-			<CardProject
-				title={post.Nombre_proyecto}
-				year={post.Year}
-				location={post.Ubicacion}
-				description={post.Breve_descripcion}
-				category={post.Categoria}
-				image={post.imagen?.[0]?.asset?.url}
-			/>
-		))}
-	</div>
+  <SeccionSobreMi />
 
 	<Form result={result} />
 </Layout>
