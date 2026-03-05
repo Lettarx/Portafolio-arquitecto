@@ -1,0 +1,17 @@
+---
+import { PortableText } from "astro-portabletext";
+const { title, year, location, description, category, image } = Astro.props;
+---
+
+<div class="card">
+  <img src={image} width="300px" height="200px" alt={title} class="card-image" />
+    <div class="card-content">
+        <h2 class="card-title">{title}</h2>
+        <p class="card-year">{year}</p>
+        <p class="card-location">{location}</p>
+        <div class="card-description">
+            <PortableText value={description} />
+        </div>
+        <p class="card-category">{category}</p>
+    </div>
+</div>

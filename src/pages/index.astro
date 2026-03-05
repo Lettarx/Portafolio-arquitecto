@@ -1,11 +1,52 @@
 ---
-import Welcome from '../components/Welcome.astro';
+export const prerender = false
+import CardProject from '../components/Card_Project.astro';
+import Form from '../components/Form.astro';
 import Layout from '../layouts/Layout.astro';
+import { type SanityDocument } from '@sanity/client';
+import { sanityClient } from 'sanity:client';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { actions } from 'astro:actions'
+const result = Astro.getActionResult(actions.sendEmail)
+
+if (result?.data?.success) {
+  return Astro.redirect('/?success=true')
+} else if (result?.error) {
+  return Astro.redirect('/?error=true')
+}
+
+const POST_QUERY = `*[_type == "Proyecto"]{
+  Nombre_proyecto,
+  Year,
+  Ubicacion,
+  Breve_descripcion,
+  Categoria,
+  Fecha_publicacion,
+  imagen{
+    asset->{
+      _id,
+      url
+    }
+  }
+}`;
+
+const posts = await sanityClient.fetch<SanityDocument[]>(POST_QUERY);
 ---
 
 <Layout>
-	<Welcome />
+	<!-- <Welcome /> -->
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+		{posts.map((post) => (
+			<CardProject
+				title={post.Nombre_proyecto}
+				year={post.Year}
+				location={post.Ubicacion}
+				description={post.Breve_descripcion}
+				category={post.Categoria}
+				image={post.imagen?.asset?.url}
+			/>
+		))}
+	</div>
+
+	<Form result={result} />
 </Layout>

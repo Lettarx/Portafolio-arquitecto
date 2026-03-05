@@ -1,0 +1,42 @@
+---
+import { actions } from 'astro:actions'
+
+const result_success = Astro.url.searchParams.get('success');
+const result_error = Astro.url.searchParams.get('error');
+
+
+---
+<h1>Contact</h1>
+{result_error && <p style="color:red">Error al enviar. Intenta de nuevo.</p>}
+{result_success && <p style="color:green">¡Mensaje enviado con éxito!</p>}
+<form method="POST" action={actions.sendEmail.toString()}>
+  <label>
+    Nombre:
+    <input type="text" name="nombre" required />
+  </label>
+  <label>
+    Email:
+    <input type="email" name="email" required />
+  </label>
+  <label>
+    Telefono:
+    <input type="tel" name="telefono" required />
+  </label>
+  <label >Tipo de proyecto
+    <select name="tipo-proyecto" required>
+      <option value="residencial">Residencial</option>
+      <option value="comercial">Comercial</option>
+      <option value="Remodelacion">Remodelación</option>
+      <option value="consulta">Consulta</option>
+    </select>
+  </label>
+  <label>
+    mensaje:
+    <textarea name="mensaje" required ></textarea>
+  </label>
+  <label>
+    Presupuesto aproximado (opcional):
+    <input type="number" name="presupuesto" />
+  </label>
+  <button>Enviar</button>
+</form>
