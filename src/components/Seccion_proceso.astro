@@ -1,0 +1,206 @@
+<section id="proceso" class="section process">
+        <div class="container">
+          <div class="divider"></div>
+          <h3 class="section-title">Mi Proceso</h3>
+          <div class="process-hero">
+            <img
+              id="processHeroImage"
+              src="/conceptualizacion.png"
+              alt="Proceso: Conceptualización"
+            />
+          </div>
+          <div class="steps">
+            <div
+              class="step active"
+              data-image="/conceptualizacion.png"
+              data-title="Conceptualización"
+              role="button"
+              tabindex="0"
+              aria-label="Conceptualización"
+            >
+              <span class="num">1</span><span>Conceptualización</span>
+            </div>
+            <div
+              class="step"
+              data-image="/diseno.png"
+              data-title="Diseño"
+              role="button"
+              tabindex="0"
+              aria-label="Diseño"
+            >
+              <span class="num">2</span><span>Diseño</span>
+            </div>
+            <div
+              class="step"
+              data-image="/det-tecnica.png"
+              data-title="Dirección Técnica"
+              role="button"
+              tabindex="0"
+              aria-label="Dirección Técnica"
+            >
+              <span class="num">3</span><span>Dirección Técnica</span>
+            </div>
+            <div
+              class="step"
+              data-image="/ejecucion.png"
+              data-title="Ejecución"
+              role="button"
+              tabindex="0"
+              aria-label="Ejecución"
+            >
+              <span class="num">4</span><span>Ejecución</span>
+            </div>
+          </div>
+        </div>
+</section>
+<style>
+    .section {
+  padding: 56px 0;
+}
+
+.section-title {
+  font-weight: 600;
+  font-size: clamp(22px, 3.2vw, 28px);
+}
+
+.divider {
+  height: 1px;
+  background: #ddd;
+  margin: 12px 0 24px 0;
+}
+
+.process-hero img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 16px;
+  filter: grayscale(1);
+  opacity: 1;
+  transition: opacity 220ms ease;
+}
+
+.process-hero img.fade-out {
+  opacity: 0.5;
+}
+.process-hero img.fade-in {
+  opacity: 1;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0d0d0d;
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  user-select: none;
+  /* object-fit: contain; */
+}
+
+.step .num {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #222;
+  font-weight: 700;
+}
+
+.step.active {
+  background: var(--accent);
+  color: #222;
+}
+
+.step.active .num {
+  background: #222;
+  color: var(--accent);
+}
+
+.step:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-hero img {
+    transition: none;
+  }
+}
+
+</style>
+<script>
+    (function () {
+  var heroImg = document.getElementById("processHeroImage") as HTMLImageElement | null;
+  var steps = document.querySelectorAll("#proceso .step");
+  var animating = false;
+
+  function setActive(step: Element) {
+    if (animating || step.classList.contains("active")) return;
+    steps.forEach(function (s) {
+      s.classList.remove("active");
+    });
+    step.classList.add("active");
+
+    var src = step.getAttribute("data-image");
+    var title = step.getAttribute("data-title") || step.textContent?.trim() || "";
+
+    var applyNew = function () {
+      if (src && heroImg) heroImg.src = src;
+      if (heroImg) heroImg.alt = "Proceso: " + title;
+    };
+
+    if (src && heroImg?.getAttribute("src") !== src) {
+      animating = true;
+      heroImg?.classList.remove("fade-in");
+      heroImg?.classList.add("fade-out");
+      heroImg?.addEventListener(
+        "transitionend",
+        function onOut() {
+          heroImg?.removeEventListener("transitionend", onOut);
+          applyNew();
+          void heroImg?.offsetWidth;
+          heroImg?.classList.remove("fade-out");
+          heroImg?.classList.add("fade-in");
+          heroImg?.addEventListener(
+            "transitionend",
+            function onIn() {
+              heroImg?.removeEventListener("transitionend", onIn);
+              heroImg?.classList.remove("fade-in");
+              animating = false;
+            },
+            { once: true }
+          );
+        },
+        { once: true }
+      );
+    } else {
+      applyNew();
+    }
+  }
+        steps.forEach(function (step) {
+          step.addEventListener("click", function () {
+            setActive(step);
+          });
+          step.addEventListener("keydown", function (e: Event) {
+            const keyEvent = e as KeyboardEvent;
+            if (keyEvent.key === "Enter" || keyEvent.key === " ") {
+              keyEvent.preventDefault();
+              setActive(step);
+            }
+          });
+        });
+        var first = document.querySelector("#proceso .step");
+        if (first) setActive(first);
+      })();
+</script>
