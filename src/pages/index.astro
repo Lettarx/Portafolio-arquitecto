@@ -7,6 +7,7 @@ import Header from '../components/Header.astro';
 import SeccionProtafolio from '../components/Seccion_protafolio.astro';
 import SeccionSobreMi from '../components/Seccion_sobre_mi.astro';
 import SeccionProceso from '../components/Seccion_proceso.astro';
+import SeccionContacto from '../components/Seccion_contacto.astro';
 import { type SanityDocument } from '@sanity/client';
 import { sanityClient } from 'sanity:client';
 
@@ -44,5 +45,5 @@ const posts = await sanityClient.fetch<SanityDocument[]>(POST_QUERY);
   <SeccionProtafolio />
   <SeccionSobreMi />
   <SeccionProceso />
-	<Form result={result} />
+  <SeccionContacto />
 </Layout>
