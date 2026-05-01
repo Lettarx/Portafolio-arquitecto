@@ -9,6 +9,8 @@
 		<title>Estudio Martin Valdés</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		
+		
 		<link
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Poppins:wght@300;400;600;700&display=swap"
 			rel="stylesheet"
@@ -24,44 +26,10 @@
 			integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
 			crossorigin="anonymous"
 		></script>
+		<link rel="stylesheet" href="/style.css">
 	</head>
 	<body>
 		<slot />
+		<script src="/script.js" defer ></script>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-		background: var(--bg);
-		color: var(--text);
-		line-height: 1.6;
-	}
-	* {
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-	}
-	:root {
-		--bg: #ffffff;
-		--text: #1a1a1a;
-		--muted: #6b6b6b;
-		--accent: #f4d35e;
-		--dark: #0f0f0f;
-		--card: #f4f4f4;
-	}
-
-	h1,
-	h2,
-	h3,
-	h4 {
-		font-family: Poppins, Inter, system-ui, Arial, sans-serif;
-		margin: 0 0 12px 0;
-		color: var(--text);
-	}
-	
-</style>
