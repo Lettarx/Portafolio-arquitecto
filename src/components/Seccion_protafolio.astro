@@ -19,7 +19,7 @@ const POST_QUERY = `*[_type == "Proyecto"]{
   }
 }`;
 
-
+ 
 const posts = await sanityClient.fetch<SanityDocument[]>(POST_QUERY);
 ---
 <section id="portafolio" class="section portfolio">
