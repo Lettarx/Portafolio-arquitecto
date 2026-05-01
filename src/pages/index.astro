@@ -1,46 +1,24 @@
 ---
 export const prerender = false
-import CardProject from '../components/Card_Project.astro';
-import Form from '../components/Form.astro';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import SeccionProtafolio from '../components/Seccion_protafolio.astro';
 import SeccionSobreMi from '../components/Seccion_sobre_mi.astro';
 import SeccionProceso from '../components/Seccion_proceso.astro';
 import SeccionContacto from '../components/Seccion_contacto.astro';
-import { type SanityDocument } from '@sanity/client';
-import { sanityClient } from 'sanity:client';
 
 import { actions } from 'astro:actions'
 const result = Astro.getActionResult(actions.sendEmail)
 
 if (result?.data?.success) {
-  return Astro.redirect('/?success=true')
+  return Astro.redirect('/?success=true#contacto')
 } else if (result?.error) {
   return Astro.redirect('/?error=true')
 }
 
-const POST_QUERY = `*[_type == "Proyecto"]{
-  Nombre_proyecto,
-  Year,
-  Ubicacion,
-  Breve_descripcion,
-  Categoria,
-  Fecha_publicacion,
-  imagen[]{
-    asset->{
-      _id,
-      url
-    }
-  }
-}`;
-
-const posts = await sanityClient.fetch<SanityDocument[]>(POST_QUERY);
 ---
 
 <Layout>
-
-	<!-- <Welcome /> -->
 	<Header />
   <SeccionProtafolio />
   <SeccionSobreMi />
