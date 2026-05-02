@@ -8,8 +8,15 @@ import sanity from '@sanity/astro';
 export default defineConfig({
   output: 'server',
   adapter: cloudflare({
-    platformProxy: {enabled: true}
+    platformProxy: {enabled: true},
+    
   }),
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {}
+    }
+  },
   integrations: [sanity({
       projectId: "o7ggtpu6",
       dataset: "production",
