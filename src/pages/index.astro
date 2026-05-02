@@ -1,5 +1,5 @@
 ---
-export const prerender = false
+// export const prerender = false
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import SeccionProtafolio from '../components/Seccion_protafolio.astro';
@@ -7,14 +7,14 @@ import SeccionSobreMi from '../components/Seccion_sobre_mi.astro';
 import SeccionProceso from '../components/Seccion_proceso.astro';
 import SeccionContacto from '../components/Seccion_contacto.astro';
 
-import { actions } from 'astro:actions'
-const result = Astro.getActionResult(actions.sendEmail)
+// import { actions } from 'astro:actions'
+// const result = Astro.getActionResult(actions.sendEmail)
 
-if (result?.data?.success) {
-  return Astro.redirect('/?success=true#contacto')
-} else if (result?.error) {
-  return Astro.redirect('/?error=true')
-}
+// if (result?.data?.success) {
+//   return Astro.redirect('/?success=true#contacto')
+// } else if (result?.error) {
+//   return Astro.redirect('/?error=true')
+// }
 
 ---
 
