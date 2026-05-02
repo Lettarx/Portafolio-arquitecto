@@ -10,8 +10,8 @@ export default defineConfig({
   }),
   integrations: [
     sanity({
-      projectId: 'o7ggtpu6',
-      dataset: 'production',
+      projectId: import.meta.env.PROJECTID_SANITY,
+      dataset: import.meta.env.DATASET_SANITY,
       useCdn: true,
     }),
   ],
