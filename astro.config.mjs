@@ -1,12 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel';
+import cloudflare from '@astrojs/cloudflare';
 import sanity from '@sanity/astro';
 
 
 export default defineConfig({
   output: 'server',
-  adapter: vercel(),
+  adapter: cloudflare({
+    platformProxy: { enabled: true },
+  }),
   integrations: [
     sanity({
       projectId: import.meta.env.PROJECTID_SANITY,
